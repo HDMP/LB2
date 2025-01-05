@@ -1,0 +1,238 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Theme Variables */
+:root {
+  --background: #121212;
+  --text: #ffffff;
+  --box-background: #1e1e1e;
+  --box-shadow: rgba(0, 0, 0, 0.3);
+  --primary: #6c5ce7;
+  --primary-hover: #4a41c7;
+  --text-muted: #b2bec3;
+  --input-border: #2d3436;
+  --error: #e74c3c;
+  --success: #2ecc71;
+  --own-message-background: var(--primary-hover);
+  --own-message-content-background: var(--primary);
+  --own-message-text-color: #fff;
+}
+
+[data-theme="light"] {
+  --background: #ebedef; 
+  --text: #2c3e50; 
+  --box-background: #ffffff;
+  --box-shadow: rgba(0, 0, 0, 0.08); 
+  --primary: #546de5; 
+  --primary-hover: #3a53c0;
+  --text-muted: #7f8c8d; 
+  --input-border: #d1d8e0;
+  --error: #e74c3c; 
+  --success: #27ae60;
+  --own-message-background: #e3f2fd;
+  --own-message-content-background: #bbdefb;
+  --own-message-text-color: #1e272e; 
+  --own-message-author-color: #34495e;
+  --own-message-timestamp-color: #95a5a6;
+}
+
+
+/* Layout */
+html, body, #app {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+body.full-scroll {
+  overflow: auto; /* Allow scrolling when needed */
+}
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px; /* Add padding to avoid content touching screen edges */
+  overflow: auto; /* Enable scrolling for smaller screens */
+}
+
+.auth-container {
+  background: var(--box-background);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px var(--box-shadow);
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.auth-container h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.auth-container p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: var(--box-background);
+  color: var(--text);
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 5px var(--primary);
+}
+
+button {
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(108, 92, 231, 0.5);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Feedback Messages */
+.feedback {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.feedback.error {
+  color: var(--error);
+  animation: shake 0.3s ease-out; 
+}
+
+.feedback.success {
+  color: var(--success);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-10px);
+  }
+  40%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.theme-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  background: var(--box-background);
+  border-radius: 25px;
+  padding: 6px 12px;
+  box-shadow: 0 5px 15px var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle input[type='checkbox'] {
+  display: none;
+}
+
+.icon-moon::before {
+  content: '🌙';
+  font-size: 1.2rem;
+}
+
+.icon-sun::before {
+  content: '☀️';
+  font-size: 1.2rem;
+}
+
+.theme-toggle:hover label {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px var(--box-shadow);
+}
+
+/* Responsive Design */
+@media (max-height: 600px) {
+  body {
+    overflow: auto;
+  }
+
+  .auth-container {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
