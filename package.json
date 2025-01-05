@@ -2,7 +2,7 @@
   "name": "live-chat-frontend",
   "version": "1.0.0",
   "description": "A modern Vue.js chat frontend for a live chat backend.",
-  "author": "Your Name",
+  "author": "Wanja Haldemann",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
